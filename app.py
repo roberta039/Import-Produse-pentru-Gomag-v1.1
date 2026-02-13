@@ -104,28 +104,28 @@ with st.sidebar:
     st.header("Gomag")
     gomag_enabled = st.checkbox("Activeaza conectare Gomag (Playwright)", value=False)
     if gomag_enabled:
-try:
+    try:
     creds = _get_gomag_creds()
     if creds is None:
         raise RuntimeError("missing")
     st.success("Secrets Gomag incarcate.")
-except Exception:
+    except Exception:
     creds = None
     st.error("Lipsesc secrets Gomag. Completeaza in Streamlit Cloud -> Settings -> Secrets.")
     else:
         creds = None
 
-st.subheader("1) Incarca Excel cu link-uri")
-uploaded = st.file_uploader("Excel (.xlsx)", type=["xlsx"])
+    st.subheader("1) Incarca Excel cu link-uri")
+    uploaded = st.file_uploader("Excel (.xlsx)", type=["xlsx"])
 
-if "drafts" not in st.session_state:
+    if "drafts" not in st.session_state:
     st.session_state["drafts"] = []
-if "df_edit" not in st.session_state:
+    if "df_edit" not in st.session_state:
     st.session_state["df_edit"] = None
-if "categories" not in st.session_state:
+    if "categories" not in st.session_state:
     st.session_state["categories"] = []
 
-if uploaded:
+    if uploaded:
     df = pd.read_excel(uploaded)
     url_col = detect_url_column(df.columns)
     if not url_col:
@@ -153,8 +153,8 @@ if uploaded:
                 except Exception as e:
                     st.error(f"Eroare la citire categorii: {e}")
 
-drafts = st.session_state.get("drafts", [])
-if drafts:
+    drafts = st.session_state.get("drafts", [])
+    if drafts:
     st.subheader("3) Tabel intermediar (verifica / corecteaza)")
     df_products = pd.DataFrame(drafts)
     st.session_state["df_edit"] = st.data_editor(df_products, use_container_width=True, num_rows="dynamic")
