@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Ensure Playwright browsers are installed inside the app directory (not in a shared cache)
+export PLAYWRIGHT_BROWSERS_PATH=0
+
+python -m playwright install --with-deps chromium

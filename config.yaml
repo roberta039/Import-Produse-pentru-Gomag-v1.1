@@ -1,0 +1,20 @@
+gomag:
+  # Ajusteaza daca ai alta ruta; BASE_URL vine din secrets
+  login:
+    username_selector: 'input[name="username"], input[type="email"], input[name="email"]'
+    password_selector: 'input[name="password"], input[type="password"]'
+    submit_selector: 'button[type="submit"], input[type="submit"]'
+    post_login_wait: 2.5
+
+  categories:
+    # Pagina unde se vad categoriile in admin (poate diferi)
+    url_path: "/gomag/dashboard/products/categories"
+    item_selector: '[data-category-name], .category-name, .tree-item'
+    # fallback: extragem textul elementelor
+
+  import:
+    url_path: "/gomag/dashboard/products/import"
+    file_input_selector: 'input[type="file"]'
+    start_import_selector: 'button:has-text("Import"), button:has-text("Start"), button[type="submit"]'
+    # NOTE: Gomag cere uneori maparea coloanelor manual la prima importare.
+    # Recomandat: fa o importare manuala o data, apoi automatizarea devine mult mai stabila.
